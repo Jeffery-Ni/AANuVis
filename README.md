@@ -10,7 +10,7 @@ Every genome (every fasta sequence) is counted individually!!!!
    
    **Dependency: seqkit, prodigal, python**
 
-# Step two: Visualize 🌐
+# Step two: Visualize 🧩
 Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-) 
 
   Usage: You have to change ```csv_files =```  ```colors =``` and ```dot_alphas =``` in the code. For visualization customization like ```grid_interval``` ```grid_alpha```, ```line_width```,```x_tick_fontsize```,```y_tick_fontsize```, and much much more, see annotations in the code.  
