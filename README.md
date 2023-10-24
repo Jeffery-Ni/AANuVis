@@ -3,8 +3,8 @@
 
 # Step one
 Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleotide usage count and convert into percentaged format
-  Usage: python AANuVis-count_local.py fasta_file.fasta or nohup AANuVis-count_local.py fasta_file.fasta & for none-verbose
-  Dependency: seqkit, prodigal, python
+   Usage: python AANuVis-count_local.py fasta_file.fasta or nohup AANuVis-count_local.py fasta_file.fasta & for none-verbose
+   Dependency: seqkit, prodigal, python
 
 # Step two
 Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-)  Usage: You have to change #csv_files = # and colors and dot_alphas in the code for customization.   Other parameters for visualization like grid_interval grid_alpha and such are customizable.
