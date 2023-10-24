@@ -2,7 +2,7 @@ AANuVis
 ==========================================================================================================================
 ***A semi-automatic amino acid usage and di- and tetra-nucleotide usage frequency calculator and UMAP visualizer***
 
-# Step one: Count 🅰️🅰️ & 2️⃣- 4️⃣- 🇳
+# Step one: Count 🅰️🅰️ & ::two::- ::four::- 🇳
 Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleotide usage count and convert into percentaged format  
 Every genome (every fasta sequence) is counted individually!!!!
 
