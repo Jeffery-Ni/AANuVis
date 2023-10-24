@@ -12,7 +12,7 @@ Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleo
 ## Step two
 Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-) 
 
-  Usage: You have to change "csv_files ="  and "colors =" and "dot_alphas =" in the code. For visualization customization like grid_interval grid_alpha and such, see annotations in the code.  
+  Usage: You have to change ```csv_files =```  ```colors =``` and ```dot_alphas =``` in the code. For visualization customization like ```grid_interval``` ```grid_alpha```, ```line_width```,```x_tick_fontsize```,```y_tick_fontsize```, and much more, see annotations in the code.  
   
   Calculation Parameters are in umap.UMAP, this is where you need to know how UMAP works, see 10.1038/nbt.4314 for introduction, or just any youtuber's video
 
