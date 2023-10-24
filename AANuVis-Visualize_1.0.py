@@ -2,7 +2,7 @@
 # multiple generations are usually neccesary for optimal visual appeal and informative reference
 # also outputs csv file containing all dot coordinates, for occasional requirement
 # this code needs manual tweakage for optimal output, see #s below
- 
+
 import os
 import csv
 import umap.umap_ as umap
