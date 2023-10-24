@@ -1,10 +1,8 @@
 AANuVis
 ==========================================================================================================================
-***A semi-automatic amino acid usage and di- and tetra-nucleotide usage frequency calculator and UMAP 🌐 visualizer***  
+***A semi-automatic amino acid usage and di- and tetra-nucleotide usage frequency calculator and UMAP 🌐 visualizer***
 
-🅰️🅰️ & 2️⃣- 4️⃣- 🇳
-
-# Step one
+# Step one: Count 🅰️🅰️ & 2️⃣- 4️⃣- 🇳
 Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleotide usage count and convert into percentaged format  
 Every genome (every fasta sequence) is counted individually!!!!
 
@@ -12,7 +10,7 @@ Every genome (every fasta sequence) is counted individually!!!!
    
    **Dependency: seqkit, prodigal, python**
 
-# Step two
+# Step two: Visualize 🌐
 Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-) 
 
   Usage: You have to change ```csv_files =```  ```colors =``` and ```dot_alphas =``` in the code. For visualization customization like ```grid_interval``` ```grid_alpha```, ```line_width```,```x_tick_fontsize```,```y_tick_fontsize```, and much much more, see annotations in the code.  
