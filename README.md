@@ -1,4 +1,4 @@
-# AANuVis
+AANuVis
 =
 ***A semi-automatic amino acid usage and di- and tetra-nucleotide usage frequency calculator and visualizer with UMAP***
 
