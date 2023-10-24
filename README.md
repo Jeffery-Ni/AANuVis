@@ -9,7 +9,9 @@ Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleo
    Dependency: seqkit, prodigal, python
 
 # Step two
-Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-)   Usage: You have to change #csv_files = # and colors and dot_alphas in the code for customization.   Other parameters for visualization like grid_interval grid_alpha and such are customizable.
+Then use # AANuVis-Visualize.py # for visualization. Parameters are integrated in the code, feel free to adjust for individualized and customized uses. :-) 
+
+  Usage: You have to change #csv_files = # and colors and dot_alphas in the code for customization.   Other parameters for visualization like grid_interval grid_alpha and such are customizable.
 
   In umap.UMAP, this is where you need to know how UMAP works, see 10.1038/nbt.4314 for introduction, or just any youtuber's video
 
