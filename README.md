@@ -13,7 +13,8 @@ Every genome (every fasta sequence) is counted individually!!!!
    or  
    ```
    nohup AANuVis-count_local.py fasta_file.fasta &
-   ``` for none-verbose
+   ```
+for none-verbose
    
    **Dependency: seqkit, prodigal, python**
 
