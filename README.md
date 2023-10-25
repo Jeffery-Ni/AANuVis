@@ -6,7 +6,14 @@ AANuVis
 Use # AANuVis-count_local.py # for local fasta file AAU and di- and tetra-nucleotide usage count and convert into percentaged format  
 Every genome (every fasta sequence) is counted individually!!!!
 
-   Usage: ```python AANuVis-count_local.py fasta_file.fasta``` or ```nohup AANuVis-count_local.py fasta_file.fasta &``` for none-verbose
+   Usage:   
+   ```
+   python AANuVis-count_local.py fasta_file.fasta
+   ```
+   or  
+   ```
+   nohup AANuVis-count_local.py fasta_file.fasta &
+   ``` for none-verbose
    
    **Dependency: seqkit, prodigal, python**
 
