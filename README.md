@@ -25,6 +25,6 @@ Then use # AANuVis-Visualize_1.0.py # for visualization. Parameters are integrat
   **Dependency: numpy, matplotlib.pyplot, umap-learn**
 
 # Reference
-We have applied this script for this first time in the article:  
+We have applied this script for the first time in this article:  
 
 If you find this script useful, be sure to reference this article, grazie mille!
