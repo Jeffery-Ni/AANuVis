@@ -1,5 +1,6 @@
 AANuVis
-==========================================================================================================================
+==========================================================================================================================  
+***Amino Acid and Nucleotide usage Visualizer***
 ***A semi-automatic amino acid usage and di- and tetra-nucleotide usage frequency calculator and UMAP visualizer***
 
 # Step one: Count 🅰️🅰️ & :two:- :four:- 🇳
