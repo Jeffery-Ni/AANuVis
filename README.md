@@ -22,8 +22,11 @@ Then use # AANuVis-Visualize_1.0.py # for visualization. Parameters are integrat
   
   Calculation Parameters are in umap.UMAP, this is where you need to know how UMAP works, see 10.1038/nbt.4314 for introduction, or just any youtuber's video
 
-  **Dependency: numpy, matplotlib.pyplot, umap-learn**
+  **Dependency: numpy, matplotlib.pyplot, umap-learn**  
 
+# Warning  
+Runs in linux
+  
 # Reference
 We have applied this script for the first time in this article:  
 
