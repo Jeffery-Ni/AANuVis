@@ -45,7 +45,7 @@ for file in csv_files:
 data = np.array(data)
 # Perform UMAP dimensionality reduction with metaparameters, this is where you need to know how UMAP works, see 10.1038/nbt.4314 for introduction, or just any youtuber's video
 # Feel free to adjust the parameters or add more for your need: https://umap-learn.readthedocs.io/en/latest/parameters.html
-reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2,, spread=1.0)
+reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2, spread=1.0)
 embedding = reducer.fit_transform(data)
 # Create legend
 legends = []
