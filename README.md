@@ -28,6 +28,6 @@ Then use # AANuVis-Visualize_1.0.py # for visualization. Parameters are integrat
 Runs in linux
   
 # Reference
-We have applied this script for the first time in this article:  
+We have applied this script for the first time in this article: 10.1111/1758-2229.13230
 
 If you find this script useful, be sure to reference this article, grazie mille!
