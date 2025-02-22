@@ -8,14 +8,18 @@ import csv
 import umap.umap_ as umap
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.cluster import KMeans
+
+#os.chdir(r'')
+
 # Define the list of CSV files, any number's fine # the legend in the file's name, so change your file name into the legend you want to visualize
-csv_files = ['AA-usage_perced.csv','another_AA-usage_perced.csv','even_more_AA-usage_perced.csv']
+csv_files = ['one.csv','another.csv']
 # Define the color map for each file with transparency
 file_colors = {}
 # Assign colors to each file based on the order of input # could use hexa... number like #9EA839 # match the number of csv inputs!
-colors = ['blue', 'red', '#61FFE7']
+colors = ['blue', 'red']
 # Define transparency for the dots # match the number of csv inputs!( i can't see ----- i can see goooood   :   0 - 1 )
-dot_alphas = ['0.2','0.6','1.0']
+dot_alphas = ['0.6','0.8']
 
 for i, file in enumerate(csv_files):
     file_colors[os.path.splitext(file)[0]] = (colors[i], dot_alphas[i])   # Use base file name as key instead of full file name
@@ -25,17 +29,28 @@ font_size = 5
 text_color = 'black'
 # Define whether to include text from the CSV file onto the visualized figure. if dot much, False is recommended cuz i can't see
 include_text = False
-#
+# Define whether to color by clusters, this is where you switch on and off colouring bu clusters or not
+color_by_clusters = True
+
+
+def cluster_colors(cluster):
+    return plt.cm.Reds((1+ cluster) / (num_clusters))
+def cluster_labels(num_clusters):
+    return [f'Cluster {i+1}' for i in range(num_clusters)]
+
+
 data = []
 labels = []
 dot_names = []
 dot_coordinates = []
 dot_csv_files = []
 label_index= []
+
+
 for file in csv_files:
     with open(file, 'r') as csv_file:
         csv_reader = csv.reader(csv_file)
-      # next(csv_reader)  # Skip header row if neccesary
+        #next(csv_reader)  # Skip header row if neccesary
         for row in csv_reader:
             if row:  
                 labels.append(os.path.splitext(file)[0])  
@@ -43,16 +58,38 @@ for file in csv_files:
                 dot_names.append(row[0])  
                 dot_csv_files.append(file)  
 data = np.array(data)
+
 # Perform UMAP dimensionality reduction with metaparameters, this is where you need to know how UMAP works, see 10.1038/nbt.4314 for introduction, or just any youtuber's video
 # Feel free to adjust the parameters or add more for your need: https://umap-learn.readthedocs.io/en/latest/parameters.html
-reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2, spread=1.0)
+reducer = umap.UMAP(n_neighbors=15, min_dist=0.1, n_components=2, spread=1.0, random_state=42)
 embedding = reducer.fit_transform(data)
+# Perform KMeans clustering to determine the number of clusters
+if color_by_clusters:
+    kmeans = KMeans(n_clusters=4).fit(embedding) # random_state=42 if needed# this is how i cluster, with k means, feel free to change this and pick the one you need, and the number of clusters you need
+    labels = kmeans.labels_
+
+# Update num_clusters based on the KMeans result
+    num_clusters = len(set(labels))
+
+#debugcount = 0
+
+
 # Create legend
 legends = []
-for label in set(labels):
-    if label in file_colors:
-        color, dot_alpha = file_colors[label]
-        legends.append(plt.scatter([], [], color=color, alpha= 0.9, label=label)) # alpha=float(dot_alpha) if want the legend to fit the dot alpha as well
+if color_by_clusters:
+    for cluster in range(num_clusters):
+        legends.append(plt.scatter([], [], color=cluster_colors(cluster), alpha=0.9, label=f'Cluster {cluster}'))
+
+
+else:
+    for label in set(labels):
+        if label in file_colors:
+            color, dot_alpha = file_colors[label]
+            legends.append(plt.scatter([], [], color=color, alpha=0.9, label=label))  # alpha=float(dot_alpha) if want the legend to fit the dot alpha as well
+
+
+
+
 # Plot the UMAP visualization
 grid_interval = 1  # Interval between grid lines
 grid_alpha = 0.6  # Transparency value for grid lines
@@ -63,19 +100,42 @@ plt.figure(figsize=(10, 8))
 plt.grid(True, which='both', linestyle='-', linewidth=line_width, alpha=grid_alpha)  # Add grids
 plt.xticks(np.arange(min(embedding[:,0]), max(embedding[:,0]), grid_interval), fontsize=x_tick_fontsize)
 plt.yticks(np.arange(min(embedding[:,1]), max(embedding[:,1]), grid_interval), fontsize=y_tick_fontsize)
-for i, label in enumerate(set(labels)):
-    indices = [j for j, x in enumerate(labels) if x == label]
-    if label in file_colors:  
-        color, dot_alpha = file_colors[label]
-    else:  
-        color = 'gray'
-    plt.scatter(embedding[indices, 0], embedding[indices, 1], color=color, alpha=float(dot_alpha), s=dot_size)
-    if include_text:
+
+
+if color_by_clusters:
+    for cluster in range(num_clusters):
+        indices = [i for i, label in enumerate(labels) if label == cluster]
+        plt.scatter(embedding[indices, 0], embedding[indices, 1], color=cluster_colors(cluster), alpha=0.8, s=dot_size)
+        if include_text:
+            for index in indices:
+                plt.text(embedding[index, 0], embedding[index, 1], dot_names[index], fontsize=font_size, color=text_color)
         for index in indices:
-            plt.text(embedding[index, 0], embedding[index, 1], dot_names[index], fontsize=font_size, color=text_color)
-    for index in indices:
-        dot_coordinates.append([dot_names[index], embedding[index, 0], embedding[index, 1]])  # Add dot coordinates
-        label_index.append(label)
+            dot_coordinates.append([dot_names[index], embedding[index, 0], embedding[index, 1]])  # Add dot coordinates
+            label_index.append(f'Cluster {cluster}')
+
+else:
+    for i, label in enumerate(set(labels)):
+        indices = [j for j, x in enumerate(labels) if x == label]
+        if label in file_colors:  
+            color, dot_alpha = file_colors[label]
+        else:  
+            color = 'gray'
+        plt.scatter(embedding[indices, 0], embedding[indices, 1], color=color, alpha=float(dot_alpha), s=dot_size)
+        if include_text:
+            for index in indices:
+                plt.text(embedding[index, 0], embedding[index, 1], dot_names[index], fontsize=font_size, color=text_color)
+        for index in indices:
+            dot_coordinates.append([dot_names[index], embedding[index, 0], embedding[index, 1]])  # Add dot coordinates
+            label_index.append(label)
+
+
+#print(label_index)
+
+# Ensure dot_coordinates and label_index have the same length
+#assert len(dot_coordinates) == len(label_index), "Mismatch between dot coordinates and labels"
+
+
+
 plt.title('UMAP Visualization')
 plt.xlabel('UMAP Dimension 1')
 plt.ylabel('UMAP Dimension 2')
